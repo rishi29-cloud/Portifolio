@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 
 from reels_analyst.analytics.service import kpis, performance_by, top_reels
 
@@ -6,6 +7,12 @@ app = FastAPI(
     title="Reels Analyst API",
     version="0.1.0",
     description="Read-only analytics API over the local Reels warehouse.",
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5500", "http://localhost:5500"],
+    allow_methods=["GET"],
+    allow_headers=["*"],
 )
 
 

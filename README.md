@@ -45,6 +45,16 @@ streamlit run dashboard.py
 
 Open `http://localhost:8000/docs` for the API and `http://localhost:8501` for the dashboard.
 
+### Static browser dashboard
+
+The root-level `index.html`, `styles.css`, and `script.js` form a lightweight, dependency-free portfolio interface. With the API running, serve the project from a second terminal:
+
+```bash
+python -m http.server 5500
+```
+
+Then visit `http://localhost:5500`. The browser dashboard calls the local FastAPI service and renders the same warehouse metrics.
+
 ## Input contract
 
 Place a CSV at `data/raw/reels.csv`. Required columns are:

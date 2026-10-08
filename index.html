@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A browser dashboard for Instagram Reels performance analytics." />
+    <title>Reels Analyst | Performance Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow"><span></span> ACCOUNT PERFORMANCE</p>
+          <h1>Reels<br /><em>Analyst.</em></h1>
+          <p class="subtitle">Discover what earns attention, engagement, and follows.</p>
+        </div>
+        <div class="api-status" id="api-status" aria-live="polite">
+          <span class="status-dot"></span><span>Connecting to analytics API…</span>
+        </div>
+      </header>
+
+      <section class="metrics" aria-label="Account key performance indicators">
+        <article class="metric-card"><span>Published Reels</span><strong id="reels">—</strong><small>tracked in the warehouse</small></article>
+        <article class="metric-card"><span>Total Reach</span><strong id="reach">—</strong><small>unique accounts reached</small></article>
+        <article class="metric-card accent"><span>Engagement Rate</span><strong id="engagement-rate">—</strong><small>likes, comments, saves & shares</small></article>
+        <article class="metric-card"><span>New Followers</span><strong id="follows">—</strong><small id="follow-rate">— conversion rate</small></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel chart-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">PERFORMANCE SIGNAL</p><h2>What resonates?</h2></div>
+            <label class="select-wrap">Break down by
+              <select id="dimension" aria-label="Performance dimension">
+                <option value="topic">Topic</option>
+                <option value="duration_bucket">Duration</option>
+                <option value="publish_hour">Publish hour</option>
+                <option value="published_week">Week</option>
+              </select>
+            </label>
+          </div>
+          <div class="bar-chart" id="bar-chart" aria-live="polite"></div>
+          <p class="chart-caption">Engagement rate by selected dimension. Taller bars indicate stronger audience response.</p>
+        </article>
+
+        <aside class="panel insight-panel">
+          <p class="eyebrow">QUICK TAKE</p>
+          <h2 id="insight-title">Loading insight…</h2>
+          <p id="insight-copy">The dashboard is calculating your strongest performance signal.</p>
+          <div class="insight-stat"><span id="insight-label">Engagement rate</span><strong id="insight-value">—</strong></div>
+        </aside>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-heading"><div><p class="eyebrow">CONTENT LEADERBOARD</p><h2>Top-performing Reels</h2></div><span class="pill">Ranked by engagement rate</span></div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Published</th><th>Topic</th><th>Duration</th><th>Reach</th><th>Plays</th><th>Engagement</th><th>Follow conversion</th></tr></thead>
+            <tbody id="reels-table"><tr><td colspan="7" class="loading">Loading Reel data…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>Built with FastAPI, DuckDB, and vanilla JavaScript · Demo data is fictional.</footer>
+    <script src="script.js"></script>
+  </body>
+</html>
